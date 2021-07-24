@@ -1,12 +1,12 @@
 #!/bin/bash
 IFS=$'\n';
 
-HELPTEXT='Usage: ./duplicatefinder.sh path filesearchpattern\n
-    e.g: ./duplicatefinder.sh /home/user/ "*.jpg"\n
+HELPTEXT="Usage: ./duplicatefinder.sh path filesearchpattern\n
+    e.g: ./duplicatefinder.sh /home/user/ '*.jpg'\n
     \n
     Triggers:\n
     -m : Move duplicates to specified directory
-';
+";
 
 MOVEMODE=0;
 MOVEDIR='';
