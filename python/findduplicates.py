@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-import hashlib
+import FilesHasher
 from importlib.resources import read_binary
 import os
 import re
@@ -10,46 +10,6 @@ from tokenize import Number
 
 walkPath="/mnt/tmp/"
 searchRegexStr="*"
-allFileHashes = []
-hashCalculationCount = 0
-
-def ReadFile(filePath, md5Obj):
-    BUF_SIZE = 65536
-    readingFinished = False
-
-    with open(filePath, 'rb') as file:
-                while not readingFinished:
-                    data = file.read(BUF_SIZE)
-                    
-                    if data:
-                        md5Obj.update(data)
-                    else:
-                        readingFinished = True
-                
-    return md5Obj
-
-def HashFiles(coreN, startIndex, endIndex, filePaths):
-    print("Core " + str(coreN) + " starting hashing")
-
-    subFilePathsArr=filePaths[startIndex:endIndex]
-
-    filePathCount=startIndex
-    for filePath in subFilePathsArr:
-        currentMd5 = hashlib.md5()
-
-        #Read in file
-        currentMd5 = ReadFile(filePath, currentMd5)
-
-        #Check hash result
-        hashResult = currentMd5.hexdigest()
-
-        #Save to array
-        allFileHashes[filePathCount] = hashResult
-        filePathCount=filePathCount+1
-
-        #Increment hash calculation count
-        ++hashCalculationCount
-#__HashFiles_END
 
 #Get no of cores
 numCores=multiprocessing.cpu_count()
